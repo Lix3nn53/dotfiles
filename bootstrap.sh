@@ -43,16 +43,37 @@ INSTALL_SCRIPTS=("$SCRIPTS_DIR"/*.sh)
 shopt -u nullglob
 
 if [ ${#INSTALL_SCRIPTS[@]} -gt 0 ]; then
-    echo
-    info "Optional install scripts:"
-    select script in "${INSTALL_SCRIPTS[@]}" "Done"; do
-        case $script in
-            Done) break ;;
-            "") warn "Invalid selection" ;;
+    while true; do
+        echo
+        info "Optional install scripts:"
+        echo
+        # Display scripts with numbers
+        for i in "${!INSTALL_SCRIPTS[@]}"; do
+            printf "  %d) %s\n" $((i+1)) "$(basename "${INSTALL_SCRIPTS[$i]}")"
+        done
+        echo "  q) Quit"
+        echo
+        read -p "Select a script (1-${#INSTALL_SCRIPTS[@]}, q to quit): " choice
+        
+        case $choice in
+            [qQ])
+                info "Skipping remaining install scripts."
+                break
+                ;;
+            [1-9]|[1-9][0-9])
+                idx=$((choice-1))
+                if [ $idx -ge 0 ] && [ $idx -lt ${#INSTALL_SCRIPTS[@]} ]; then
+                    script="${INSTALL_SCRIPTS[$idx]}"
+                    info "Running $(basename "$script")..."
+                    bash "$script"
+                    echo
+                    info "Script completed. Select another or press 'q' to quit."
+                else
+                    warn "Invalid selection. Please choose 1-${#INSTALL_SCRIPTS[@]} or 'q'."
+                fi
+                ;;
             *)
-                info "Running $(basename "$script")..."
-                bash "$script"
-                info "Select another or choose 'Done'"
+                warn "Invalid input. Please enter a number (1-${#INSTALL_SCRIPTS[@]}) or 'q' to quit."
                 ;;
         esac
     done
