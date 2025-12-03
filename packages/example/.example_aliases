@@ -1,0 +1,3 @@
+# Example aliases managed via stow
+alias hello='echo "Hello from example package!"'
+alias ll='ls -lah'

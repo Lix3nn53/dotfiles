@@ -1,0 +1,5 @@
+# Example config managed via stow
+# You can put any placeholder settings here
+
+EXAMPLE_VAR="Hello, World!"
+export EXAMPLE_VAR
