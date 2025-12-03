@@ -4,11 +4,11 @@ set -euo pipefail
 echo "[INFO] Installing Firefox with yay..."
 
 if ! command -v firefox >/dev/null 2>&1; then
-    if ! command -v yay >/dev/null 2>&1; then
-        echo "[ERROR] yay is not installed. Please install yay first."
-        exit 1
-    fi
-    yay -S --noconfirm firefox
+if ! command -v yay >/dev/null 2>&1; then
+    echo "[ERROR] yay is not installed. Please install yay first."
+    exit 1
+fi
+yay -S --noconfirm firefox
     echo "[INFO] Firefox installed."
 else
     echo "[INFO] Firefox is already installed."

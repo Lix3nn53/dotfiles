@@ -39,7 +39,7 @@ done
 # -----------------------------
 SCRIPTS_DIR="$DOTFILES_DIR/scripts"
 shopt -s nullglob
-INSTALL_SCRIPTS=("$SCRIPTS_DIR"/install-*.sh)
+INSTALL_SCRIPTS=("$SCRIPTS_DIR"/*.sh)
 shopt -u nullglob
 
 if [ ${#INSTALL_SCRIPTS[@]} -gt 0 ]; then

@@ -1,0 +1,12 @@
+[Desktop Entry]
+Name=Unity Hub
+Exec=/home/lix3nn/.local/bin/unityhub %U
+Terminal=false
+Type=Application
+Icon=unityhub
+StartupWMClass=unityhub
+Comment=The Official Unity Hub
+Categories=Development;
+TryExec=unityhub
+MimeType=x-scheme-handler/unityhub;
+

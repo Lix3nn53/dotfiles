@@ -1,0 +1,17 @@
+#!/usr/bin/env bash
+# Unity Hub wrapper with UI scaling fix
+# This sets scaling environment variables before launching Unity Hub
+# Unsets global GDK_SCALE from Hyprland monitors.conf and sets Unity-specific values
+
+# Debug: Verify wrapper is being called
+echo "Unity Hub wrapper: Setting GDK_SCALE=1, GDK_DPI_SCALE=0.5" > /tmp/unityhub-wrapper.log
+
+# Unset the global GDK_SCALE from monitors.conf and set Unity-specific scaling
+# Export so child processes (Unity Editor) inherit these values
+unset GDK_SCALE
+export GDK_SCALE=1
+export GDK_DPI_SCALE=0.5
+
+# Launch Unity Hub - child processes will inherit the exported variables
+exec /opt/unityhub/unityhub "$@"
+
