@@ -15,6 +15,8 @@ If files already exist, use `--adopt` to pull them into dotfiles:
 ./bootstrap.sh --adopt
 ```
 
+After editing files in `packages/`, run `./bootstrap.sh` again. Note: Editing existing files applies changes immediately (symlinks). Re-run bootstrap when adding/removing files or changing directory structure.
+
 ## Prerequisites
 
 - [Omarchy](https://omarchy.org/)
@@ -66,15 +68,6 @@ DNS configuration for systemd-resolved:
 ### Configuration Scripts
 
 - `apply-systemd-dns.sh` - Applies DNS configuration to systemd-resolved
-
-## Usage
-
-After editing files in `packages/`, run:
-```bash
-./bootstrap.sh
-```
-
-**Note:** Editing existing files applies changes immediately (symlinks). Re-run bootstrap when adding/removing files or changing directory structure.
 
 ## Omarchy Notes
 
